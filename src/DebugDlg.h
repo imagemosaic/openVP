@@ -1,0 +1,15 @@
+﻿//////////////////////////////////////////////////////////////////////////
+//Copyright(C) 陈奇，2010-05
+//编程方式：win32 SDK C语言编程
+//文件名：MainDlg.h
+//描述：聊天拨号（登录）对话框回调函数的声明
+//主要函数：MainDlg()
+//版本：
+//////////////////////////////////////////////////////////////////////////
+
+#include "global.h"
+
+
+#ifdef _DEBUG
+BOOL CALLBACK DebugDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam);
+#endif
