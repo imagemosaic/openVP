@@ -5,10 +5,10 @@
 文件名: cluster.c
 相关文件: cluser.h
 文件实现功能: 特征向量聚类过程实现
-作者: 陈奇
+作者: Dake
 版本: V2010.09.01
 编程方式: ANSI C语言编程
-授权方式: Copyright(C) 陈奇
+授权方式: Copyright(C) Dake
 联系方式: chen423@yeah.net
 生成日期: 2010-07-05
 --------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ YYYY/MM/DD   X.Y      <作者或修改者名>    <修改内容>
 *******************************************************************************/
 #include "cluster.h"
 
-#define DIFF_CENTER_VALUE  1               //!< k均值归一阈值
+#define DIFF_CENTER_VALUE  1   //!< k均值归一阈值
 
 static double getDistance(double * p1, double * p2);
 

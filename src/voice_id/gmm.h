@@ -5,10 +5,10 @@
 文件名: gmm.h
 相关文件: gmm.c
 文件实现功能: 高斯混合模型过程相关函数、变量的声明
-作者: 陈奇
+作者: Dake
 版本: V2010.09.01
 编程方式: ANSI C语言编程
-授权方式: Copyright(C) 陈奇
+授权方式: Copyright(C) Dake
 联系方式: chen423@yeah.net
 生成日期: 2010-07-05
 --------------------------------------------------------------------------------
@@ -42,10 +42,10 @@ YYYY/MM/DD   X.Y      <作者或修改者名>    <修改内容>
 typedef struct GMM
 {//结构体内改成动态内存
        void (* f_Init)(struct GMM *, int);
-       int m;                      //!< 高斯混合数
-       double * p;              //!< M组加权系数
-       double ** u;    	       //!< M组D维均值
-       double ** cMatrix;  //!< M个协方差矩阵(D维对角阵)
+       int m;             //!< 高斯混合数
+       double * p;        //!< M组加权系数
+       double ** u;    	  //!< M组D维均值
+       double ** cMatrix; //!< M个协方差矩阵(D维对角阵)
        void * (* f_CallocGMM)(struct GMM *);
        void (* f_FreeGMM)(struct GMM *);
 } GMM;

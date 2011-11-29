@@ -1,5 +1,5 @@
 ﻿//////////////////////////////////////////////////////////////////////////
-//Copyright(C) 陈奇，2010-05
+//Copyright(C) Dake，2010-05
 //编程方式：win32 SDK C语言编程
 //文件名：DebugDlg.c
 //描述：调试窗口
@@ -12,7 +12,7 @@
 #ifdef _DEBUG
 BOOL CALLBACK DebugDlg(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	switch(message)
+	switch (message)
 	{
 	case WM_INITDIALOG:
 		hwndEdit = GetDlgItem(hwnd, IDC_TEXTOUT);

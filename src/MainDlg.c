@@ -1,5 +1,5 @@
 ﻿//////////////////////////////////////////////////////////////////////////
-//Copyright(C) 陈奇，2010-05
+//Copyright(C) Dake，2010-05
 //编程方式：win32 SDK C语言编程
 //文件名：MainDlg.c
 //描述：
@@ -233,19 +233,22 @@ static void VoicePrintIdentify()
 {
 	int i;
 	int temp_num = 0;
-	double percent = my_voiceprint.voice_mdl.percent / 100.0;
 	double temp = 0;
+	double percent = my_voiceprint.voice_mdl.percent / 100.0;
 	HWND hwndPrint = NULL;
+	TCHAR * res; // 识别结果字符串
 
 	hwndPrint = GetDlgItem(my_voiceprint.hwnd, IDC_TEXTOUT);
 	EditPrintf(hwndPrint, TEXT("声纹识别结果:\r\n"));
 	for (i = 0; i < IDENTIFY_NUM; ++i)
 	{
 		temp = (1 + percent) * my_voiceprint.voice_mdl.value[i][0];
-		EditPrintf(hwndPrint, TEXT("第%d个%d帧:  最大识别值: %lf\r\n识别值: %lf\r\n"), i+1, my_voiceprint.rec_frame[i], temp, my_voiceprint.voice_mdl.value[i][1]);
+		EditPrintf(hwndPrint, TEXT("第%d个%d帧:  最大识别值: %lf\r\n识别值: %lf\r\n"), 
+			i+1, my_voiceprint.rec_frame[i], temp, my_voiceprint.voice_mdl.value[i][1]);
 		temp >= my_voiceprint.voice_mdl.value[i][1] ? ++temp_num : temp_num;
 	}
-	EditPrintf(hwndPrint, TEXT("识别次数: %d, %s\r\n\r\n"), temp_num, temp_num>(IDENTIFY_NUM-1)?TEXT("识别成功！"):TEXT("未识别！"));
+	res = temp_num>(IDENTIFY_NUM-1)?TEXT("识别成功！"):TEXT("未识别！");
+	EditPrintf(hwndPrint, TEXT("识别次数: %d, %s\r\n\r\n"), temp_num, res);
 }
 
 static void OnRecordBeg(HWND hwnd, LPARAM lParam)
@@ -274,7 +277,7 @@ static void OnBuildBtn(HWND hwnd)
 	{
 		/* 启动录音 */
 		SendMessage(hwnd, WM_RECORD_BEG, 0, IDC_BUILD_GMM);
-		MessageBox(hwnd, TEXT("建模开始"), szAppVersion, 0);
+		MessageBox(hwnd, TEXT("建模开始\n开始录音..."), szAppVersion, 0);
 		sprintf(my_voiceprint.voice_mdl.voice_file.szFileName, "C:\\建模%I64d.data", time(NULL));
 		my_voiceprint.voice_mdl.file_stream = fopen(my_voiceprint.voice_mdl.voice_file.szFileName, "wb");
 		if (!my_voiceprint.voice_mdl.file_stream) // 失败
@@ -292,7 +295,7 @@ static void OnBuildBtn(HWND hwnd)
 	}
 	else if (my_voiceprint.voice_mdl.bValued) // 已经建模过	
 	{
-		MessageBox(hwnd, TEXT("已有声纹模型！"), szAppVersion, 0);
+		MessageBox(hwnd, TEXT("已有声纹模型，请导出后重置！"), szAppVersion, 0);
 	}
 }
 
@@ -300,7 +303,7 @@ static void OnIdentifyBtn(HWND hwnd)
 {
 	if (!g_buildGMM && !my_voiceprint.voice_mdl.bValued)
 	{
-		MessageBox(hwnd, TEXT("尚未提取声纹！"), szAppVersion, 0);
+		MessageBox(hwnd, TEXT("请先提取或导入声纹！"), szAppVersion, 0);
 	}
 	else if (g_buildGMM && !my_voiceprint.voice_mdl.bValued)
 	{
@@ -309,7 +312,7 @@ static void OnIdentifyBtn(HWND hwnd)
 	else  if (!g_buildGMM && my_voiceprint.voice_mdl.bValued)
 	{
 		SendMessage(hwnd, WM_RECORD_BEG, 0, IDC_IDENTIFY);
-		MessageBox(hwnd, TEXT("识别开始"), szAppVersion, 0);
+		MessageBox(hwnd, TEXT("识别开始\n 开始录音..."), szAppVersion, 0);
 		sprintf(my_voiceprint.voice_mdl.voice_file.szFileName, "C:\\识别%I64d.data", time(NULL));
 		my_voiceprint.voice_mdl.file_stream = fopen(my_voiceprint.voice_mdl.voice_file.szFileName, "wb");
 		if (!my_voiceprint.voice_mdl.file_stream) // 失败
@@ -336,7 +339,7 @@ static void OnExportGMMBtn(HWND hwnd)
 
 	if (!my_voiceprint.voice_mdl.bValued)
 	{
-		MessageBox(hwnd, TEXT("尚未提取声纹！"), szAppVersion, 0);
+		MessageBox(hwnd, TEXT("尚无声纹模型！"), szAppVersion, 0);
 		return;
 	}
 
@@ -434,7 +437,7 @@ static void OnImportGMMBtn(HWND hwnd)
 	OnClearBtn(hwnd);
 	PrintThresholdValue(hwnd);
 	SetupDlg(hwnd);
-	MessageBox(hwnd, TEXT("导入成功！"), szAppVersion, 0);
+	//MessageBox(hwnd, TEXT("导入成功！"), szAppVersion, 0);
 }
 
 

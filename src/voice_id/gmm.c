@@ -3,12 +3,12 @@
 <PRE>
 模块名: 高斯混合模型过程
 文件名: gmm.c
-相关文件: gmm.c
+相关文件: gmm.h
 文件实现功能: 高斯混合模型过程相关函数的实现
-作者: 陈奇
+作者: Dake
 版本: V2010.09.01
 编程方式: ANSI C语言编程
-授权方式: Copyright(C) 陈奇
+授权方式: Copyright(C) Dake
 联系方式: chen423@yeah.net
 生成日期: 2010-07-05
 --------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ YYYY/MM/DD   X.Y      <作者或修改者名>    <修改内容>
 
 #define DIFF_GMM_VALUE     1              //!< GMM归一阈值
 #define IDENTIFY_VALUE    (-30000)        //!< 识别阈值
-//#define IDENTITY_FRAME_NUM 100          //!< 识别帧数
+//#define IDENTITY_FRAME_NUM 100           //!< 识别帧数
 
 
 static double getDistance(double * p1, double * p2);

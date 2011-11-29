@@ -1,5 +1,5 @@
 ﻿//////////////////////////////////////////////////////////////////////////
-//Copyright(C) 陈奇，2010-11
+//Copyright(C) Dake，2010-11
 //编程方式：win32 SDK C语言编程
 //文件名：FileDlg.c
 //描述：文件对话框的相关操作
@@ -31,9 +31,9 @@ void FileInitialize(HWND hwnd)
 		 TEXT("All Files (*.*)\0*.*\0\0");
 
 	ofn.lStructSize       = sizeof(OPENFILENAME) ;
-	ofn.hwndOwner     = hwnd ;
+	ofn.hwndOwner         = hwnd ;
 	ofn.hInstance         = NULL ;
-	ofn.lpstrFilter       = szFilter ;         //设置格式过滤选项
+	ofn.lpstrFilter       = szFilter ;      // 设置格式过滤选项
 	ofn.lpstrCustomFilter = NULL ;
 	ofn.nMaxCustFilter    = 0 ;
 	ofn.nFilterIndex      = 0 ;

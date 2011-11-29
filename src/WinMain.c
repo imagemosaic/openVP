@@ -1,5 +1,5 @@
 ﻿//////////////////////////////////////////////////////////////////////////
-//Copyright(C) 陈奇，2010-05
+//Copyright(C) Dake，2010-05
 //编程方式：win32 SDK C语言编程
 //文件名：WinMain.c
 //描述：程序入口
@@ -16,7 +16,7 @@
 HWND CreateMainWin(HINSTANCE hInstance);
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-HINSTANCE  hInst = 0; //存储当前程序实例句柄
+HINSTANCE  hInst = 0; // 存储当前程序实例句柄
 
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
@@ -60,7 +60,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		srand((unsigned int)time(NULL));
-		InitializeCriticalSection(&cs);    //初始化临界区;
+		InitializeCriticalSection(&cs);   // 初始化临界区;
 #ifdef _DEBUG
 		if (!hwndDebugDlg)
 		{
@@ -84,14 +84,24 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			MessageBeep(0);
 			return TRUE;
 
-		case IDM_APP_EXIT:      // 退出
+		case IDM_APP_EXIT:    // 退出
 			SendMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
 			return TRUE;
 
-		case IDM_APP_HELP:     // 帮助
-			MessageBox(hwnd, TEXT("<-文本无关的声纹识别算法验证程序->\n")
+		case IDM_APP_HELP:    // 帮助
+			MessageBox(hwnd, TEXT("<-文本无关声纹识别之win32 Demo->\n\n")
 				TEXT("语音特征向量：MFCC系数（梅尔倒谱系数）\n")
-				TEXT("模式匹配模型：GMM模型（高斯混合模型）"),
+				TEXT("模式匹配模型：GMM模型（高斯混合模型）\n")
+				TEXT("声音数据参数：单通道，16bit的PCM码流\n")
+				TEXT("项目主要内容：声纹识别模块由纯C完成，可在linux下正常编译，对应本Demo的”voice_id“目录，其余模块为win32 Demo的gui及录音模块实现。\n\n")
+				TEXT("使用步骤：\n")
+				TEXT("1、点击\"提取声纹\"，确认后开始录音，当采集到足够的声音数据后会提示完成。\n")
+				TEXT("2、完成第1步后，点击\"身份验证\"，确认后开始录音，当采集到足够的声音数据后会提示完成，并计算识别结果。\n")
+				TEXT("3、若建模或识别过程失败请按照失败提示设置参数后重新进行。\n")
+				TEXT("注意事项：\n")
+				TEXT("1、由于各份声音数据未进行音量归一化操作，所以不同音量会对DCT过程产生影响，请尽量保证各份声音数据在相同音量环境下录制！\n")
+				TEXT("2、由于时间原因，mfcc、gmm及后验概率的计算位于主线程中，即是单线程的（录音模块单独分配一个线程），所以如果帧数设置过高，可能会引起程序无响应。\n")
+				TEXT("3、\"voice_id\"目录（声纹识别模块）只提供：mfcc、gmm、后验概率的计算，要得到合理的识别结果还需设计识别结果处理方式，可参照VoicePrintIdentify()函数处理。"),
 				szAppVersion,  MB_OK);
 			return TRUE;
 
@@ -99,8 +109,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			MessageBox(hwnd, TEXT("Voice Print V1.1\n")
 				TEXT("CopyRight(c) Dake, 2010\n")
 				TEXT("指导老师：吴震东\n")
-				TEXT("作者：陈奇\n")
-				TEXT("邮箱：<chen423@yeah.net>"),
+				TEXT("作者：Dake\n")
+				TEXT("电邮：<chen423@yeah.net>"),
 				szAppVersion, MB_ICONINFORMATION | MB_OK) ;
 			return TRUE;
 		}

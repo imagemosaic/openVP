@@ -1,42 +1,16 @@
-VoicePrint V1.1
+README
 
-=====================
-1. 程序说明
-=====================
+             Open Voice Print (openVP) 2.0 闈欐�佸唴瀛樺垎閰嶇増
+             
+Introduction
+============
 
-    VoicePrint 是款基于高斯混合模型的文本无关的声纹识别算法验证程序
+openVP is a source code for voice print recognition in C language.
+It is based on Mel Frequency Cepstrum Coefficient (MFCC) and 
+Gassian mixture model (GMM).
 
-    VoicePrint的特点是：
-     *语音特征向量：采用MFCC系数（梅尔倒谱系数）
-     *模式匹配模型：采用GMM模型（高斯混合模型）
-	
-======================
-2. 最近更新
-======================
 
-VoicePrint V1.1正式版
+Please visit the openVP homepage at the following address for more
+information about openVP:
 
-* 修复建模、识别过程中间语音转储临时文件可能无法删除。
-* 修改语音段数由3改为4，每段语音改为定长的50帧。
-* GMM模型数据转储文件结构微调，不再兼容1.1以前的版本。
-
----------------------
-VoicePrint V1.0
-
-* 增加了将GMM模型数据导出为文件的功能，并能把文件导入程序。
-* 修改了识别范围值。
-* 修改了声纹识别算法，改为动态数组分配内存。
-
-=====================
-3. 温馨提醒
-=====================
-
-   本程序为课程实验验证开发，所实现的声纹识别算法难免有错误及不妥之处！
-   
-   提醒：因为本程序是简略的验证程序，建议不要在正式项目中直接使用本程序中的声纹识别代码。
-   
-   
-===================
-
-Dake
-2010年12月
+    http://www.openvp.tk
